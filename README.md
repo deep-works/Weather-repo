@@ -1,2 +1,3 @@
 # Weather-repo
-Weather App 
+Construct a Weather App 
+☀️⛅️☁️🌧⛈🌈
