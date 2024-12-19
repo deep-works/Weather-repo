@@ -33,6 +33,7 @@ input {
     border-radius: 10px;
     border: 1px solid white;
     margin-top: 20px;
+    text-align: center;
 }
 
 button {
@@ -45,19 +46,21 @@ button {
     margin-top: 20px;
     width: 100px;
     font-size: 15px;
+    margin-bottom: 30px;
 }
 
 button:hover {
     background: #8b48d7;
 }
 
-#temp-div p {
-    font-size: 60px;
+#temp-div {
+    font-size: xx-large;
     margin-top: -30px;
 }
 
 #weather-info {
-    font-size: 20px;
+    font-size: xx-large;
+    margin-bottom: -30px;
 }
 
 #weather-icon {
@@ -65,8 +68,19 @@ button:hover {
     height: 200px;
     margin: 0 auto 10px;
     margin-bottom: 0;
-    display: none;
+    /* display: none; */
 }
+
+#humidity {
+    font-size: x-large;
+}
+
+#wind-speed {
+    font-size: x-large;
+}
+
+
+/* hourly forcast related ... not done */
 
 #hourly-forecast {
     margin-top: 50px;
