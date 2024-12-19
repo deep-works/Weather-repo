@@ -1,5 +1,6 @@
 const apiKey = '392f79319f03c2480f235579fb89178c';
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
+const iconUrl = 'https://openweathermap.org/img/wn/';
 
 //get the selectd elements to changes..................
 let tempDivInfo = document.getElementById('temp-div');
@@ -42,7 +43,8 @@ function displayWeather(data) {
     console.log("fetched data", data);
     // Display the weather data in the UI..
     weatherInfoDiv.innerHTML = data.weather[0].main;
-    tempDivInfo.innerHTML = data.main.temp + '°C';
-    humidityDiv.innerHTML = data.main.humidity + '%';
-    windSpeedDiv.innerHTML = data.wind.speed + 'm/s';
+    tempDivInfo.innerHTML = (data.main.temp - 273).toPrecision(3) + '°C';
+    humidityDiv.innerHTML = 'Humidity '+data.main.humidity + '%';
+    windSpeedDiv.innerHTML = 'Wind-Speed '+data.wind.speed + 'm/s';
+    weatherIcon.src = iconUrl + data.weather[0].icon + '@4x.png';
 }
