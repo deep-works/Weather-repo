@@ -11,7 +11,9 @@
 <body>
     <div id="weather-container">
         <h2>Weather App</h2>
-        <input type="text" id="city" placeholder="Enter City Name">
+        <!-- search on enter press -->
+        <input type="text" id="city" placeholder="Enter City Name" onkeydown="if (event.key == 'Enter') getWeather()">
+        <!-- search on search button click -->
         <button onclick="getWeather()">Search</button>
 
         <div>

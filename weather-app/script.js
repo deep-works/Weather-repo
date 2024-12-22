@@ -44,7 +44,8 @@ function displayWeather(data) {
     // Display the weather data in the UI..
     weatherInfoDiv.innerHTML = data.weather[0].main;
     tempDivInfo.innerHTML = (data.main.temp - 273).toPrecision(3) + '°C';
-    humidityDiv.innerHTML = 'Humidity '+data.main.humidity + '%';
-    windSpeedDiv.innerHTML = 'Wind-Speed '+data.wind.speed + 'm/s';
+    humidityDiv.innerHTML = 'Humidity ' + data.main.humidity + '%';
+    windSpeedDiv.innerHTML = 'Wind-Speed ' + data.wind.speed + 'm/s';
+    // change the icon url-src to the update icon......
     weatherIcon.src = iconUrl + data.weather[0].icon + '@4x.png';
 }
