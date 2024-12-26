@@ -8,6 +8,7 @@ let weatherInfoDiv = document.getElementById('weather-info');
 let weatherIcon = document.getElementById('weather-icon');
 let humidityDiv = document.getElementById('humidity');
 let windSpeedDiv = document.getElementById('wind-speed');
+let airpressure = document.getElementById('pressure');
 // let hourlyForecastDiv = document.getElementById('hourly-forecast');
 
 
@@ -44,8 +45,11 @@ function displayWeather(data) {
     // Display the weather data in the UI..
     weatherInfoDiv.innerHTML = data.weather[0].main;
     tempDivInfo.innerHTML = (data.main.temp - 273).toPrecision(3) + '°C';
-    humidityDiv.innerHTML = 'Humidity ' + data.main.humidity + '%';
-    windSpeedDiv.innerHTML = 'Wind-Speed ' + data.wind.speed + 'm/s';
+    humidityDiv.innerHTML = data.main.humidity;
+    windSpeedDiv.innerHTML = data.wind.speed;
     // change the icon url-src to the update icon......
     weatherIcon.src = iconUrl + data.weather[0].icon + '@4x.png';
+    weatherIcon.style.padding = "0px";//change the pading to no padding .
+    // change airpressure in mbar
+    airpressure.innerHTML = data.main.pressure;
 }
