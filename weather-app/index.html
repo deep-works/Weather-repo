@@ -11,17 +11,39 @@
 <body>
     <div id="weather-container">
         <h2>Weather App</h2>
-        <!-- search on enter press -->
-        <input type="text" id="city" placeholder="Enter City Name" onkeydown="if (event.key == 'Enter') getWeather()">
-        <!-- search on search button click -->
-        <button onclick="getWeather()">Search</button>
+        <div class="search">
+            <!-- search on enter press -->
+            <input type="text" id="city" placeholder="Enter City Name"
+                onkeydown="if (event.key == 'Enter') getWeather()">
+            <!-- search on search button click -->
+            <button onclick="getWeather()">
+                <img src="assets/search.png" alt="search" height="20">
+            </button>
+        </div>
 
-        <div>
-            <div id="weather-info">rain</div>
-            <img id="weather-icon" alt="Weather Icon" src="https://openweathermap.org/img/wn/10d@x.png">
-            <div id="temp-div">90</div>
-            <div id="humidity">76</div>
-            <div id="wind-speed">45</div>
+        <!-- weather icon info and temperature -->
+        <div class="stack">
+            <div id="weather-info">weather</div>
+            <img id="weather-icon" alt="Weather Icon" src=" ">
+            <div id="temp-div">00</div>
+        </div>
+        <!-- details for airpressure, humidity, wind-speed -->
+        <div class="details">
+            <div class="vertical">
+                <img src="assets/atmospheric.png" alt="pressure" height="50">
+                <span id="pressure">00</span>
+                <span>mBar</span>
+            </div>
+            <div class="vertical">
+                <img src="assets/humidity.png" alt="Humidity" height="50">
+                <span id="humidity">00</span>
+                <span>%</span>
+            </div>
+            <div class="vertical">
+                <img src="assets/wind.png" alt="Humidity" height="50">
+                <span id="wind-speed">00</span>
+                <span>Km/h</span>
+            </div>
         </div>
 
         <div id="hourly-forecast"></div>
