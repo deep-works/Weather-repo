@@ -118,10 +118,13 @@ button:hover {
     text-align: center;
 }
 
-/* hourly forcast related ... not done */
-
+/* hourly forcast related ... done */
 #hourly-forecast {
-    margin-top: 50px;
+    color: white;
+    background-color: #8b48d799;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 10px;
     overflow-x: auto;
     white-space: nowrap;
     display: flex;
@@ -136,6 +139,11 @@ button:hover {
     align-items: center;
     margin-right: 10px;
     color: white;
+    padding: 10px;
+    background-color: #ab72ec;
+    border-radius: 20px;
+    margin-bottom: -5px;
+    box-sizing: border-box;
 }
 
 .hourly-item img {
@@ -144,7 +152,22 @@ button:hover {
     margin-bottom: 5px;
 }
 
-#hourly-heading {
-    color: #fff;
-    margin-top: 10px;
+/* Custom scrollbar styles for WebKit browsers  */
+::-webkit-scrollbar {
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+/* make visible on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #62548c;
+}
+
+::-webkit-scrollbar-track:hover {
+    background: #8964af;
 }

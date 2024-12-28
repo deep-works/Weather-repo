@@ -1,6 +1,7 @@
 const apiKey = '392f79319f03c2480f235579fb89178c';
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
 const iconUrl = 'https://openweathermap.org/img/wn/';
+const hourlyApiUrl = "https://api.openweathermap.org/data/2.5/forecast?";
 
 //get the selectd elements to changes..................
 let tempDivInfo = document.getElementById('temp-div');
@@ -9,7 +10,7 @@ let weatherIcon = document.getElementById('weather-icon');
 let humidityDiv = document.getElementById('humidity');
 let windSpeedDiv = document.getElementById('wind-speed');
 let airpressure = document.getElementById('pressure');
-// let hourlyForecastDiv = document.getElementById('hourly-forecast');
+let hourlyForecastDiv = document.getElementById('hourly-forecast');
 
 
 /* The main function for fetching API.................*/
@@ -22,8 +23,8 @@ async function getWeather() {
     }
 
     const currentWeatherUrl = apiUrl + 'q=' + city + '&appid=' + apiKey;
-    // const currentWeatherUrl = `${apiUrl}q=${city}&appid=${apiKey}`; //?another alternative..
-    console.log("URL is:", currentWeatherUrl);
+    const hourlyWeatherUrl = `${hourlyApiUrl}q=${city}&appid=${apiKey}`; //?alternative format.. getting hourly
+
     try {
         let response = await fetch(currentWeatherUrl);
         if (!response.ok) {
@@ -33,8 +34,18 @@ async function getWeather() {
         // if response=ok, Call a function to display the weather data..
         let data = await response.json();
         displayWeather(data);
+
+        //fetching hourly forecast...
+        let response2 = await fetch(hourlyWeatherUrl);
+        if (!response2.ok) { //response not ok : error
+            console.log("api2 fetching error", response2.status);
+            throw new Error(response2.statusText);
+        }
+        let hourlydata = await response2.json();
+        displayHourlyWeather(hourlydata);
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
+        alert("no city found");
     }
 }
 
@@ -52,4 +63,26 @@ function displayWeather(data) {
     weatherIcon.style.padding = "0px";//change the pading to no padding .
     // change airpressure in mbar
     airpressure.innerHTML = data.main.pressure;
+}
+
+/* function for displaying hourly data i ui............*/
+function displayHourlyWeather(hourlydata) {
+    console.log("feteched hourly hourlydata", hourlydata);
+    //get the list of data for different time amd loop through each of them..
+    hourlydata.list.forEach((itm) => {
+        //store the each items in veriables..
+        const icon = iconUrl + itm.weather[0].icon + '.png';
+        const temp = (itm.main.temp - 273).toPrecision(3) + '°C'; //show 3 places like {32.1}.
+        const [date, time] = (itm.dt_txt).split(' '); //get in format {2024-12-28 09:00:00} so split on space.. also need to slice to {09:00}
+
+        //ui for showing each hour details..
+        const hourlyInnerHtml = `
+            <div class="hourly-item">
+                <span>${time.slice(0, 5)}</span> 
+                <img src="${icon}">
+                <span>${temp}</span>
+            </div>
+        `;
+        hourlyForecastDiv.innerHTML += hourlyInnerHtml; //render innerhtml
+    });
 }
