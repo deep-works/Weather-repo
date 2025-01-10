@@ -53,8 +53,14 @@ async function getWeather() {
 /* function for reflect the changes in ui.............*/
 function displayWeather(data) {
     console.log("fetched data", data);
+    city_name.innerHTML = `${data.name}, ${data.sys.country}`; //added location,city
+
     // Display the weather data in the UI..
-    weatherInfoDiv.innerHTML = data.weather[0].main;
+    weatherInfoDiv.innerHTML = data.weather[0].description;
+    document.body.style.backgroundImage = `
+        url(${bgimageIndex[data.weather[0].main]})
+    `; // update the background-img based on weather 
+
     tempDivInfo.innerHTML = (data.main.temp - 273).toPrecision(3) + '°C';
     humidityDiv.innerHTML = data.main.humidity;
     windSpeedDiv.innerHTML = data.wind.speed;
@@ -68,6 +74,10 @@ function displayWeather(data) {
 /* function for displaying hourly data i ui............*/
 function displayHourlyWeather(hourlydata) {
     console.log("feteched hourly hourlydata", hourlydata);
+    const currentTime = new Date().toLocaleTimeString();
+    console.log(currentTime);
+
+    hourlydata.list = hourlydata.list.slice(0, 5);
     //get the list of data for different time amd loop through each of them..
     hourlydata.list.forEach((itm) => {
         //store the each items in veriables..
