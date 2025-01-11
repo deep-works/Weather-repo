@@ -73,11 +73,12 @@ function displayWeather(data) {
 
 /* function for displaying hourly data i ui............*/
 function displayHourlyWeather(hourlydata) {
+    hourlyForecastDiv.innerHTML = ``; // clears previous hourly forecast..
     console.log("feteched hourly hourlydata", hourlydata);
     const currentTime = new Date().toLocaleTimeString();
     console.log(currentTime);
 
-    hourlydata.list = hourlydata.list.slice(0, 5);
+    hourlydata.list = hourlydata.list.slice(1, 6);
     //get the list of data for different time amd loop through each of them..
     hourlydata.list.forEach((itm) => {
         //store the each items in veriables..
